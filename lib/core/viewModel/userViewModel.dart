@@ -14,9 +14,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:hive/hive.dart';
 
 class UsersViewModel extends ChangeNotifier {
+  //for all Hive Services
   final HiveService hiveService = HiveService();
-  bool _isLoading = false;
 
+  bool _isLoading = false;
   bool get isLoading => _isLoading;
   set isLoading(bool val) {
     _isLoading = val;
@@ -28,9 +29,11 @@ class UsersViewModel extends ChangeNotifier {
   // List<UserList> userList = [];
   late UserDetails dummyUserDetails;
 
+//To fetch all users from dummyAPI
   Future<void> getUsersName(BuildContext context) async {
     _isLoading = true;
     notifyListeners();
+    //url
     String url = Api.BASE_URL + Endpoints.user;
 
     try {
@@ -50,16 +53,11 @@ class UsersViewModel extends ChangeNotifier {
               lastName: 'lastName',
               picture: 'picture');
 
-          userHive.firstName = element['firstName'];
-
-          userHive.id = element['id'];
-
-          userHive.lastName = element['lastName'];
-
-          userHive.picture = element['picture'];
-
-          userHive.title = element['title'];
-
+          userHive.firstName = element['firstName']; 
+          userHive.id = element['id']; 
+          userHive.lastName = element['lastName']; 
+          userHive.picture = element['picture']; 
+          userHive.title = element['title']; 
           userHiveList.add(userHive);
         });
 
@@ -70,6 +68,8 @@ class UsersViewModel extends ChangeNotifier {
       if (e is SocketException) {
         _isLoading = false;
         notifyListeners();
+
+        //show offline mode if No Internet
         showDialog(
           barrierDismissible: false,
             context: context,
@@ -86,10 +86,11 @@ class UsersViewModel extends ChangeNotifier {
     }
   }
 
+
   List<UserHiveList> get dummyList {
     return [...userHiveList];
   }
-
+//To search through the Users list
   List<UserHiveList> searchForUser(String userName) {
     // ignore: unnecessary_null_comparison
     if (userName == null || userName.isEmpty) {
@@ -105,6 +106,7 @@ class UsersViewModel extends ChangeNotifier {
     }
   }
 
+//Getting User Details
   Future<UserDetails> getUserDetails(
       String userID, BuildContext context) async {
     _isLoading = true;

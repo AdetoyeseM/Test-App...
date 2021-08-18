@@ -7,8 +7,9 @@ import 'package:intelligent_inno_task/utils/colors.dart';
 import 'package:intelligent_inno_task/utils/customLoader.dart';
 import 'package:intelligent_inno_task/utils/margins.dart';
 import 'package:intelligent_inno_task/utils/navigationUtil.dart';
+import 'package:intelligent_inno_task/utils/style.dart';
 
-import 'detailScreen.dart'; 
+import 'detailScreen.dart';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:string_extensions/string_extensions.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -30,7 +31,7 @@ class _LocalUserState extends State<LocalUser> {
     data = json.decode(jsonText);
     setState(() {
       userData = data!['data'];
-    }); 
+    });
     return 'success';
   }
 
@@ -48,16 +49,17 @@ class _LocalUserState extends State<LocalUser> {
           if (userData == null) {
             return Loading();
           } else
-            return Scaffold(backgroundColor: white,
-            appBar: AppBar(
-              centerTitle: true,
-          elevation: 0,
-          backgroundColor: white,
-          title: Text(
-            'Users List[Offline]',
-            style: GoogleFonts.mulish(
-                color: black, fontSize: 20, fontWeight: FontWeight.w700),
-          ),),
+            return Scaffold(
+                backgroundColor: white,
+                appBar: AppBar(
+                  centerTitle: true,
+                  elevation: 0,
+                  backgroundColor: white,
+                  title: Text(
+                    'Users List[Offline]',
+                    style: headerStyle,
+                  ),
+                ),
                 body: ListView.separated(
                     separatorBuilder: (BuildContext context, int index) {
                       return Padding(
@@ -68,56 +70,56 @@ class _LocalUserState extends State<LocalUser> {
                     itemCount: userData!.length,
                     itemBuilder: (BuildContext contet, int index) {
                       return GestureDetector(
-                        onTap: () {
-                          navigate(
-                              context,
-                              UserDetail(
-                                id: userData![index]['id'],
-                                title: userData![index]['title'],
-                                lastname: userData![index]['lastName'],
-                                firstname: userData![index]['firstName'],
-                                picture: userData![index]['picture'],
-                              ));
-                        },
-                        child: ListTile(
-      leading: CachedNetworkImage(
-        imageUrl:userData![index]['picture'],
-        imageBuilder: (context, imageProvider) => Container(
-          width: 40,
-          height: 40,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10),
-            shape: BoxShape.rectangle,
-            image: DecorationImage(image: imageProvider, fit: BoxFit.contain),
-          ),
-        ),
-        placeholder: (context, url) => CircularProgressIndicator(
-            strokeWidth: 1.2, backgroundColor: accentColor),
-      ),
-      title: Row(
-        children: [
-          Text(
-           userData![index]['title'],
-            style: GoogleFonts.mulish(
-                color: black, fontSize: 14, fontWeight: FontWeight.w700),
-          ),
-          const XMargin(3),
-          Text(
-            userData![index]['firstName'],
-            style: GoogleFonts.mulish(
-                color: black, fontSize: 14, fontWeight: FontWeight.w700),
-          ),
-          const XMargin(3),
-          Text(
-           userData![index]['lastName'],
-            style: GoogleFonts.mulish(
-                color: black, fontSize: 14, fontWeight: FontWeight.w700),
-          ),
-        ],
-      ),
-    )
- 
-                      );
+                          onTap: () {
+                            navigate(
+                                context,
+                                UserDetail(
+                                  id: userData![index]['id'],
+                                  title: userData![index]['title'],
+                                  lastname: userData![index]['lastName'],
+                                  firstname: userData![index]['firstName'],
+                                  picture: userData![index]['picture'],
+                                ));
+                          },
+                          child: ListTile(
+                            leading: CachedNetworkImage(
+                              imageUrl: userData![index]['picture'],
+                              imageBuilder: (context, imageProvider) =>
+                                  Container(
+                                width: 40,
+                                height: 40,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10),
+                                  shape: BoxShape.rectangle,
+                                  image: DecorationImage(
+                                      image: imageProvider,
+                                      fit: BoxFit.contain),
+                                ),
+                              ),
+                              placeholder: (context, url) =>
+                                  CircularProgressIndicator(
+                                      strokeWidth: 1.2,
+                                      backgroundColor: accentColor),
+                            ),
+                            title: Row(
+                              children: [
+                                Text(
+                                  userData![index]['title'],
+                                  style: userListStyle,
+                                ),
+                                const XMargin(3),
+                                Text(
+                                  userData![index]['firstName'],
+                                  style: userListStyle,
+                                ),
+                                const XMargin(3),
+                                Text(
+                                  userData![index]['lastName'],
+                                  style: userListStyle,
+                                ),
+                              ],
+                            ),
+                          ));
                     }));
         });
   }

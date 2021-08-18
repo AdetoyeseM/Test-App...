@@ -3,6 +3,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:intelligent_inno_task/utils/colors.dart';
 import 'package:intelligent_inno_task/utils/margins.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intelligent_inno_task/utils/style.dart';
 import 'package:string_extensions/string_extensions.dart';
 
 class UserDetail extends StatefulWidget {
@@ -150,41 +151,34 @@ class _UserDetailState extends State<UserDetail> {
                                 ListTile(
                                 leading: Icon(Icons.person, color: primaryColor),
                                 title: Text("Title",
-                                    style: GoogleFonts.mulish(
-                                        fontSize: 18, color: Colors.black)),
+                                    style: userTitleStyle),
                                 subtitle: Text(widget.title,
-                                    style: GoogleFonts.mulish(
-                                        fontSize: 15, color: Colors.black54)),
+                                    style: subtitleStyle),
                               ),
                               Divider(),
                                 ListTile(
                                 leading: Icon(Icons.person, color: primaryColor),
                                 title: Text("First Name",
-                                    style: GoogleFonts.mulish(
-                                        fontSize: 18, color: Colors.black)),
+                                    style: userTitleStyle
+                                        ),
                                 subtitle: Text(widget.firstname,
-                                    style: GoogleFonts.mulish(
-                                        fontSize: 15, color: Colors.black54)),
+                                    style: subtitleStyle),
                               ),
                               Divider(),
                                 ListTile(
                                 leading: Icon(Icons.person, color: primaryColor),
                                 title: Text("Last Name",
-                                    style: GoogleFonts.mulish(
-                                        fontSize: 18, color: Colors.black)),
+                                    style: userTitleStyle),
                                 subtitle: Text(widget.lastname,
-                                    style: GoogleFonts.mulish(
-                                        fontSize: 15, color: Colors.black54)),
+                                    style: subtitleStyle),
                               ),
                               Divider(),
                               ListTile(
                                 leading: Icon(Icons.email, color: primaryColor),
                                 title: Text("User-ID",
-                                    style: GoogleFonts.mulish(
-                                        fontSize: 18, color: Colors.black)),
+                                    style: userTitleStyle),
                                 subtitle: Text(widget.id,
-                                    style: GoogleFonts.mulish(
-                                        fontSize: 15, color: Colors.black54)),
+                                    style: subtitleStyle),
                               ),
                               Divider(),
                             

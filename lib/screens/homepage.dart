@@ -7,6 +7,7 @@ import 'package:intelligent_inno_task/utils/colors.dart';
 import 'package:intelligent_inno_task/utils/customLoader.dart';
 import 'package:intelligent_inno_task/utils/margins.dart';
 import 'package:intelligent_inno_task/utils/navigationUtil.dart';
+import 'package:intelligent_inno_task/utils/style.dart';
 import 'package:provider/provider.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -51,8 +52,7 @@ class _HomePageState extends State<HomePage> {
           backgroundColor: white,
           title: Text(
             'Users List',
-            style: GoogleFonts.mulish(
-                color: black, fontSize: 20, fontWeight: FontWeight.w700),
+            style:headerStyle,
           ),
           centerTitle: true,
           bottom: PreferredSize(
@@ -104,7 +104,7 @@ class _HomePageState extends State<HomePage> {
                   );
                 },
                 itemCount: data.length,
-                itemBuilder: (BuildContext contet, int index) {
+                itemBuilder: (BuildContext context, int index) {
                   return GestureDetector(
                     onTap: () {
                       navigate(
@@ -151,84 +151,21 @@ class AllUsers extends StatelessWidget {
         children: [
           Text(
             data.title!.toTitleCase().toString(),
-            style: GoogleFonts.mulish(
-                color: black, fontSize: 14, fontWeight: FontWeight.w700),
+            style:userListStyle,
           ),
           const XMargin(3),
           Text(
             data.firstName!.toTitleCase().toString(),
-            style: GoogleFonts.mulish(
-                color: black, fontSize: 14, fontWeight: FontWeight.w700),
+            style: userListStyle,
           ),
           const XMargin(3),
           Text(
             data.lastName!.toTitleCase().toString(),
-            style: GoogleFonts.mulish(
-                color: black, fontSize: 14, fontWeight: FontWeight.w700),
+            style:userListStyle ,
           ),
         ],
       ),
     );
   }
 }
-
-// import 'package:flutter/material.dart';
-// import 'package:intelligent_inno_task/core/viewModel/userViewModel.dart';
-// import 'package:intelligent_inno_task/models/userHiveModel.dart';
-// import 'package:intelligent_inno_task/utils/customLoader.dart';
-// import 'package:intelligent_inno_task/utils/navigationUtil.dart';
-// import 'package:provider/provider.dart';
-
-// import 'detailScreen.dart';
  
-
-// class HomePage extends StatefulWidget {
-//   const HomePage({Key? key}) : super(key: key);
-
-//   @override
-//   _HomePageState createState() => _HomePageState();
-// }
-
-// class _HomePageState extends State<HomePage> {
-//   late UsersViewModel userViewModel;
-
-//   @override
-//   Widget build(BuildContext context) {
-//     userViewModel = context.watch<UsersViewModel>();
-//     return Scaffold(
-//         body: FutureBuilder(
-//             future: userViewModel.getUsers(context),
-//             builder: (BuildContext context, AsyncSnapshot snapshot) {
-//               // if (!snapshot.hasData) {
-//               //   return Loading();
-//               // }
-//               return ListView.separated(
-//                   separatorBuilder: (BuildContext context, int index) {
-//                     return Padding(
-//                       padding: const EdgeInsets.only(left: 20.0, right: 20),
-//                       child: Divider(),
-//                     );
-//                   },
-//                   itemCount:  20,
-//                   itemBuilder: (BuildContext context, int index) {
-//                     return GestureDetector(
-//                         onTap: () {
-//                           navigate(
-//                               context,
-//                               UserDetail(
-//                                   // id: data[index].id,
-//                                   // title: data[index].title,
-//                                   // lastname: data[index].lastName,
-//                                   // firstname: data[index].firstName,
-//                                   // picture: data[index].picture,
-//                                   ));
-//                         },
-//                         child: ListTile(
-//                           leading: Text(snapshot.data[index].id),
-//                         ));
-//                   });
-
-//               // return Container();
-//             }));
-//   }
-// }
